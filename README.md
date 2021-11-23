@@ -2,7 +2,7 @@
 - [Paper](https://bop.felk.cvut.cz/datasets/)
 
 <p align="center">
-    <img src ="assets/introduction_figure.png" width="1000" />
+    <img src ="assets/introduction_figure.png" width="600" />
 </p>
 
 ## Setup
