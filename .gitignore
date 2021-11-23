@@ -2,6 +2,7 @@ evaluation/eval_results/*
 evaluation/bop_pred_results/
 evaluation/object_codebooks/*
 notebook/.ipynb_checkpoints/*
+notebook/qualitative_results_LineMOD.ipynb
 *__pycache__*
 *.pth
 training/checkpoints/*

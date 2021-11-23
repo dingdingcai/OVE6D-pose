@@ -437,13 +437,13 @@ def OVE6D_mask_rotation_estimation(input_depth, model_net, object_codebook, cfg)
     final_R = estimated_xyz_R[sorted_idxes][:cfg.POSE_NUM_TOPK]
     final_S = estimated_scores[sorted_idxes][:cfg.POSE_NUM_TOPK]
     
-    final_vp = retrieved_codebook_R[sorted_idxes][:cfg.POSE_NUM_TOPK]
-    print(final_vp)
+    # final_vp = retrieved_codebook_R[sorted_idxes][:cfg.POSE_NUM_TOPK]
+    # print(final_vp)
    
     return final_R, final_S
            
 
-def OVE6D_rcnn_full_pose(model_func, obj_depths, obj_masks, obj_rcnn_scores, obj_codebook, cam_K, config, obj_renderer, device):
+def OVE6D_rcnn_full_pose(model_func, obj_depths, obj_masks, obj_rcnn_scores, obj_codebook, cam_K, config, obj_renderer, device, return_rcnn_idx=False):
     """
     Perform OVE6D with multiple masks predicted by Mask-RCNN
     Full pipeline (Mask-RCNN + OVE6D)
@@ -635,7 +635,8 @@ def OVE6D_rcnn_full_pose(model_func, obj_depths, obj_masks, obj_rcnn_scores, obj
         pose_ret['icpk_select_time'] = icpk_select_cost
         pose_ret['icpk_postp_time'] = icpk_postp_cost
         pose_ret['icpk_rawicp_time'] = topk_icp_cost # total cost
-    
+    if return_rcnn_idx: # return the index of the final selected segmentation mask predicted by RCNN
+        return pose_ret, estimated_rcnn_idx
     return pose_ret
 
 def OVE6D_rcnn_rotation_estimation(input_depth, rcnn_score, model_net, object_codebook, cfg):
