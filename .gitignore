@@ -1,9 +1,9 @@
 evaluation/eval_results/*
 evaluation/bop_pred_results/
 evaluation/object_codebooks/*
-notebook/.ipynb_checkpoints/*
-notebook/ADD-S.ipynb
-notebook/qualitative-evaluation-LESS.ipynb
+example/.ipynb_checkpoints/*
+example/ADD-S.ipynb
+example/qualitative-evaluation-LESS.ipynb
 *__pycache__*
 *.pth
 training/checkpoints/*
