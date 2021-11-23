@@ -11,11 +11,12 @@ matplotlib==3.3.4
 tqdm==4.59.0
 imgaug==0.4.0
 opencv-python==4.5.1.48
-torch==1.7.1
-torchvision==0.8.2
+torch==1.7.1+cu110
+torchvision==0.8.2+cu110
 PyOpenGL==3.1.5
 PyOpenGL-accelerate==3.1.5
 PyYAML==5.4.1
 tensorboard==2.4.1
 Blender==2.80
 cudatoolkit==11.0
+detectron2==0.4+cu110

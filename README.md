@@ -4,12 +4,14 @@
 ## Setup
 Please start by installing [Miniconda3](https://conda.io/projects/conda/en/latest/user-guide/install/linux.html) with Pyhton3.8 or above.
 
+## Denpendencies
+This project requires the evaluation code from [bop_toolkit](https://github.com/thodan/bop_toolkit) and [sixd_toolkit](https://github.com/thodan/sixd_toolkit).
+
+
 ## Dataset
 Our evaluation is conducted on three datasets all downloaded from [BOP website](https://bop.felk.cvut.cz/datasets). All three datasets are stored in the same directory. e.g. ``Dataspace/lm, Dataspace/lmo, Dataspace/tless``.
 
 ## Quantitative Evaluation
-The evaluation code is based on the code [bop_toolkit](https://github.com/thodan/bop_toolkit) (ADD(-S) on LINEMOD and Occluded LINEMOD) and [sixd_toolkit](https://github.com/thodan/sixd_toolkit)(VSD on T-LESS single object per class).
-
 Evaluation on the LineMOD and Occluded LineMOD datasets with instance segmentation (Mask-RCNN) network (complete pipeline)
 
 ``python LM_RCNN_OVE6D_pipeline.py`` for LineMOD.
