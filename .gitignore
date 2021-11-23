@@ -3,5 +3,5 @@ evaluation/bop_pred_results/
 evaluation/object_codebooks/*
 notebook/.ipynb_checkpoints/*
 *__pycache__*
-checkpoints/*
+*.pth
 training/checkpoints/*
