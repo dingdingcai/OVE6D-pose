@@ -62,7 +62,7 @@ rcnn_cfg = get_cfg()
 rcnn_cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml"))
 # rcnn_cfg.DATASETS.TEST = ("lmo_test", )
 # rcnn_cfg.OUTPUT_DIR = pjoin(base_path, 'checkpoints', 'LMO-maskrcnn')
-rcnn_cfg.MODEL.WEIGHTS = pjoin(base_path, 'checkpoints', 'LMO-maskrcnn', 'lmo_model_final.pth')
+rcnn_cfg.MODEL.WEIGHTS = pjoin(base_path, 'checkpoints', 'lmo_maskrcnn_model.pth')
 
 rcnn_cfg.MODEL.ROI_HEADS.NUM_CLASSES = len(rcnnIdx_to_lmoCats_dict)
 rcnn_cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.001 # the predicted category scores
@@ -76,8 +76,7 @@ cfg.HEMI_ONLY = True
 
 ckpt_file = pjoin(base_path, 
                 'checkpoints', 
-                'OVE6D-weight',
-                "pose_model_50_121526_11_02-05:39:36_0.0046_0.0198_5.3.pth"
+                "OVE6D_pose_model.pth"
                 )
 model_net = network.OVE6D().to(DEVICE)
 

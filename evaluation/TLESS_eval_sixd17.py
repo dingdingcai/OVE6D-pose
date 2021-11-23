@@ -57,7 +57,6 @@ cfg.RENDER_HEIGHT = eval_dataset.cam_height      # the height of rendered images
 
 ckpt_file = pjoin(base_path, 
                 'checkpoints', 
-                'OVE6D-weight',
                 "pose_model_50_121526_11_02-05:39:36_0.0046_0.0198_5.3.pth"
                 )
                 

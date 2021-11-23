@@ -55,15 +55,15 @@ eval_dataset = LineMOD_Dataset.Dataset(datapath / 'lm')
 
 ################################################# MASK-RCNN Segmentation ##################################################################
 rcnnIdx_to_lmIds_dict = {0:1, 1:2, 2:3, 3:4, 4:5, 5:6, 6:7, 7:8, 8:9, 9:10, 10:11, 11:12, 12:13, 13:14, 14:15}
-rcnnIdx_to_lmCats_dict ={0:'Ape', 1:'Benchvice', 3:'Bowl', 4:'Camera', 5:'Can', 6:'Cat', 7:'Cup', 8:'Driller', 
-                        9:'Duck', 10:'Eggbox', 11:'Glue', 12:'Holepunch', 13:'Iron', 14:'Lamp', 15:'Phone'}
+rcnnIdx_to_lmCats_dict ={0:'Ape', 1:'Benchvice', 2:'Bowl', 3:'Camera', 4:'Can', 5:'Cat', 6:'Cup', 7:'Driller', 
+                        8:'Duck', 9:'Eggbox', 10:'Glue', 11:'Holepunch', 12:'Iron', 13:'Lamp', 14:'Phone'}
 rcnn_cfg = get_cfg()
 # rcnn_cfg.INPUT.MASK_FORMAT = 'bitmask'
 rcnn_cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml"))
 rcnn_cfg.MODEL.WEIGHTS = pjoin(base_path, 
                             'checkpoints', 
-                            'LMO-maskrcnn', 
-                            'lm_model_final.pth')
+                            'lm_maskrcnn_model.pth')
+                            
 rcnn_cfg.MODEL.ROI_HEADS.NUM_CLASSES = len(rcnnIdx_to_lmCats_dict)
 rcnn_cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.001 # the predicted category scores
 predictor = DefaultPredictor(rcnn_cfg)
@@ -90,8 +90,7 @@ cfg.HEMI_ONLY = True
 
 ckpt_file = pjoin(base_path, 
                 'checkpoints', 
-                'OVE6D-weight',
-                "pose_model_50_121526_11_02-05:39:36_0.0046_0.0198_5.3.pth"
+                "OVE6D_pose_model.pth"
                 )
 model_net = network.OVE6D().to(DEVICE)
 
