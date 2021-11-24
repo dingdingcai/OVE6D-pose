@@ -13,15 +13,6 @@ from pathlib import Path
 
 from detectron2 import model_zoo
 from detectron2.config import get_cfg
-# from detectron2.structures import BoxMode, BitMasks
-# from detectron2.utils.visualizer import Visualizer
-# from pycocotools.coco import COCO
-# from pycocotools.cocoeval import COCOeval
-# from pycocotools import mask as mask_util
-# from detectron2.data import MetadataCatalog, DatasetCatalog
-# from detectron2.structures import Boxes, BoxMode, PolygonMasks, RotatedBoxes
-# from detectron2.evaluation import COCOEvaluator, inference_on_dataset
-# from detectron2.data import build_detection_test_loader
 from detectron2.engine import DefaultPredictor
 
 
@@ -70,21 +61,9 @@ predictor = DefaultPredictor(rcnn_cfg)
 ################################################# MASK-RCNN Segmentation ##################################################################
 
 
-
-
 cfg.DATASET_NAME = 'lm'        # dataset name
-# cfg.ZOOM_DIST_FACTOR  = 0.01   # zooming distance factor relative to object diameter (i.e. zoom_dist = 8 * diameter)
-# cfg.VP_MAX_NN = 500            # only consider the top 500 neighbors at most for each viewpoint (-1 for all neighbors)
 cfg.RENDER_WIDTH = eval_dataset.cam_width    # the width of rendered images
 cfg.RENDER_HEIGHT = eval_dataset.cam_height  # the height of rendered images
-# cfg.ZOOM_MODE = 'bilinear'
-# cfg.USE_ICP = False
-# cfg.USE_VPNMS = False
-# cfg.RENDER_NUM_VIEWS = 4000
-
-# cfg.VP_NUM_TOPK = 50  # the retrieval number of viewpoint 
-# cfg.RANK_NUM_TOPK = 5  # the ranking number of full 3D orientation 
-
 
 cfg.HEMI_ONLY = True
 
@@ -119,7 +98,7 @@ rcnn_gt_results = dict()
 rcnn_pd_results = dict()
 
 test_data_dir = datapath / 'lm' / 'test'          # path to the test dataset of BOP
-eval_dir = pjoin(base_path, 'evaluation/bop_pred_results/LM')
+eval_dir = pjoin(base_path, 'evaluation/pred_results/LM')
 
 raw_file_mode = "raw-sampleN{}-viewpointK{}-poseP{}-rcnn_lm-test.csv"
 if cfg.USE_ICP:
@@ -140,9 +119,6 @@ bg_cost = list()
 zoom_cost = list()
 rot_cost = list()
 tsl_cost = list()
-# single_proposal_icp_cost = list()
-# single_proposal_sum_raw_cost = list()
-# single_proposal_sum_icp_cost = list()
 
 raw_syn_render_cost = list()
 raw_selection_cost = list()
@@ -309,22 +285,6 @@ for scene_id in sorted(os.listdir(test_data_dir)):
                     int(scene_id), view_id+1, np.mean(rcnn_runtime), np.mean(view_runtime), 
                     np.mean(raw_pred_runtime), np.mean(icp1_pred_runtime), np.mean(icpk_pred_runtime)))
 
-            # print(('[{}/{}] \n' + 
-            #         'view:{:.3f}, read:{:.3f}, rcnn:{:.3f}, ' +
-            #         'bg:{:.3f}, zoom:{:.3f}, rot:{:.3f}, tsl:{:.3f}, \n' +
-            #         ' raw_sum:{:.3f}, raw_syn:{:.3f}, raw_sele:{:.3f}, raw_post:{:.3f}, \n' + 
-            #         'icp1_sum:{:.3f}, \n' + 
-            #         'icpk_sum:{:.3f}, icpk_syn:{:.3f}, icpk_sele:{:.3f}, icpk_post:{:.3f}, \n' +
-            #         'icp1_ref:{:.3f}, raw_icp1:{:.3f}, \n' +  
-            #         'icpk_ref:{:.3f}, raw_icpk:{:.3f}'
-            #     ).format(int(scene_id), view_id+1, 
-            #             np.mean(view_runtime), np.mean(img_read_cost), np.mean(rcnn_runtime),  
-            #             np.mean(bg_cost), np.mean(zoom_cost), np.mean(rot_cost), np.mean(tsl_cost), 
-            #             np.mean(raw_pred_runtime), np.mean(raw_syn_render_cost), np.mean(raw_selection_cost), np.mean(raw_postprocess_cost), 
-            #             np.mean(icp1_pred_runtime), np.mean(icpk_pred_runtime), np.mean(icpk_syn_render_cost), np.mean(icpk_selection_cost), np.mean(icpk_postprocess_cost), 
-            #             np.mean(icp1_refinement_cost), np.mean(icp1_pred_runtime), 
-            #             np.mean(icpk_refinement_cost), np.mean(icpk_pred_runtime),     
-            # ))
     print('{}, {}'.format(scene_id, time.strftime('%m_%d-%H:%M:%S', time.localtime())))
 
 rawk_eval_file = pjoin(eval_dir, raw_file_mode.format(

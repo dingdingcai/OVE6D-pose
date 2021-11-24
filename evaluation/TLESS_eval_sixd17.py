@@ -17,8 +17,6 @@ warnings.filterwarnings("ignore")
 base_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(base_path)
 
-# from bop_toolkit_lib import inout
-# from sixd_toolkit.pysixd import inout
 
 from dataset import TLESS_Dataset
 from lib import network, rendering
@@ -39,8 +37,8 @@ def save_results_sixd17(path, res, run_time=-1):
     with open(path, 'w') as f:
         f.write(txt)
 
-# gpu_id = 0
-gpu_id = 1
+gpu_id = 0
+# gpu_id = 1
 
 os.environ["CUDA_DEVICE_ORDER"]="PCI_BUS_ID"
 os.environ["CUDA_VISIBLE_DEVICES"] = str(gpu_id)
@@ -55,9 +53,10 @@ eval_dataset = TLESS_Dataset.Dataset(datapath / cfg.DATASET_NAME)
 cfg.RENDER_WIDTH = eval_dataset.cam_width        # the width of rendered images
 cfg.RENDER_HEIGHT = eval_dataset.cam_height      # the height of rendered imagescd
 
+
 ckpt_file = pjoin(base_path, 
                 'checkpoints', 
-                "pose_model_50_121526_11_02-05:39:36_0.0046_0.0198_5.3.pth"
+                "OVE6D_pose_model.pth"
                 )
                 
 model_net = network.OVE6D().to(DEVICE)
@@ -88,12 +87,12 @@ test_data_dir = datapath / 'tless' / 'test_primesense'
 rcnn_mask_dir = datapath / 'tless' / 'mask_RCNN_50'
 
 
-eval_dir = pjoin(base_path, 'evaluation/bop_pred_results/TLESS')
+eval_dir = pjoin(base_path, 'evaluation/pred_results/TLESS')
 
 raw_file_mode = "raw-sampleN{}-viewpointK{}-poseP{}-mpmask_tless_primesense"
 if cfg.USE_ICP:
-    icp1_file_mode = "icp1-sampleN{}-viewpointK{}-poseP{}-nbr{}-itr{}-pts{}-pla{}-css-mpmask_tless_primesense"
-    icpk_file_mode = "icpk-sampleN{}-viewpointK{}-poseP{}-nbr{}-itr{}-pts{}-pla{}-css-mpmask_tless_primesense"
+    icp1_file_mode = "icp1-sampleN{}-viewpointK{}-poseP{}-nbr{}-itr{}-pts{}-pla{}-mpmask_tless_primesense"
+    icpk_file_mode = "icpk-sampleN{}-viewpointK{}-poseP{}-nbr{}-itr{}-pts{}-pla{}-mpmask_tless_primesense"
 
 obj_renderer = rendering.Renderer(width=cfg.RENDER_WIDTH, height=cfg.RENDER_HEIGHT)
 

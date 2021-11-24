@@ -13,15 +13,6 @@ from pathlib import Path
 
 from detectron2 import model_zoo
 from detectron2.config import get_cfg
-# from detectron2.structures import BoxMode, BitMasks
-# from detectron2.utils.visualizer import Visualizer
-# from pycocotools.coco import COCO
-# from pycocotools.cocoeval import COCOeval
-# from pycocotools import mask as mask_util
-# from detectron2.data import MetadataCatalog, DatasetCatalog
-# from detectron2.structures import Boxes, BoxMode, PolygonMasks, RotatedBoxes
-# from detectron2.evaluation import COCOEvaluator, inference_on_dataset
-# from detectron2.data import build_detection_test_loader
 from detectron2.engine import DefaultPredictor
 
 
@@ -58,10 +49,7 @@ rcnnIdx_to_lmoIds_dict = {0:1, 1:5, 2:6, 3:8, 4:9, 5:10, 6:11, 7:12}
 rcnnIdx_to_lmoCats_dict = {0:'Ape', 1:'Can', 2:'Cat', 3:'Driller', 4:'Duck', 5:'Eggbox', 6:'Glue', 7:'Holepunch'}
 catId_to_catName_dict = {1:'Ape', 5:'Can', 6:'Cat', 8:'Driller', 9:'Duck', 10:'Eggbox', 11:'Glue', 12:'Holepunch'}
 rcnn_cfg = get_cfg()
-# rcnn_cfg.INPUT.MASK_FORMAT = 'bitmask'
 rcnn_cfg.merge_from_file(model_zoo.get_config_file("COCO-InstanceSegmentation/mask_rcnn_R_50_FPN_3x.yaml"))
-# rcnn_cfg.DATASETS.TEST = ("lmo_test", )
-# rcnn_cfg.OUTPUT_DIR = pjoin(base_path, 'checkpoints', 'LMO-maskrcnn')
 rcnn_cfg.MODEL.WEIGHTS = pjoin(base_path, 'checkpoints', 'lmo_maskrcnn_model.pth')
 
 rcnn_cfg.MODEL.ROI_HEADS.NUM_CLASSES = len(rcnnIdx_to_lmoCats_dict)
@@ -69,7 +57,7 @@ rcnn_cfg.MODEL.ROI_HEADS.SCORE_THRESH_TEST = 0.001 # the predicted category scor
 predictor = DefaultPredictor(rcnn_cfg)
 ################################################# MASK-RCNN Segmentation ##################################################################
 
-cfg.DATASET_NAME = 'lm'        # dataset name
+cfg.DATASET_NAME = 'lm'                      # dataset name
 cfg.RENDER_WIDTH = eval_dataset.cam_width    # the width of rendered images
 cfg.RENDER_HEIGHT = eval_dataset.cam_height  # the height of rendered images
 cfg.HEMI_ONLY = True
@@ -88,7 +76,6 @@ codebook_saving_dir = pjoin(base_path,'evaluation/object_codebooks',
                             'zoom_{}'.format(cfg.ZOOM_DIST_FACTOR), 
                             'views_{}'.format(str(cfg.RENDER_NUM_VIEWS)))
 
-
 object_codebooks = utils.OVE6D_codebook_generation(codebook_dir=codebook_saving_dir, 
                                                     model_func=model_net,
                                                     dataset=eval_dataset, 
@@ -105,7 +92,7 @@ rcnn_gt_results = dict()
 rcnn_pd_results = dict()
 
 test_data_dir = datapath / 'lmo' / 'test'          # path to the test dataset of BOP
-eval_dir = pjoin(base_path, 'evaluation/bop_pred_results/LMO')
+eval_dir = pjoin(base_path, 'evaluation/pred_results/LMO')
 
 
 raw_file_mode = "raw-sampleN{}-viewpointK{}-poseP{}-rcnn_lmo-test.csv"

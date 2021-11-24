@@ -17,8 +17,6 @@ ZOOM_DIST_FACTOR = 0.01  # the distance factor of zooming (relative to object di
 DATASET_NAME = ''
 SAVE_FTMAP = True        # store the latent feature maps of viewpoint (for rotation regression)
 
-# FUSE_RCNN_VPSIM = False # whether fusing the rcnn detection confidence with the retrieved viewpoint cosine similarity score
-
 HEMI_ONLY = True
 USE_ICP = True
 ICP_neighbors = 10         
@@ -26,16 +24,11 @@ ICP_min_planarity = 0.2
 ICP_max_iterations = 20     # max iterations for ICP
 ICP_correspondences = 1000  # the number of points selected for iteration
 
-# VP_NMS_DIST = 10 # the distance of viewpoint hypothesis in degrees
-# VP_MAX_NN = -1   # the maximum number of nearest neighors for each viewpoint (-1 for all viewpoints)
-
-
-# USE_VPNMS = False
 VP_NUM_TOPK = 50   # the number of viewpoint retrievals
 POSE_NUM_TOPK = 5  # the number of pose hypotheses
 
 
-DATA_PATH = '/home/hdd/Dingding/Dataspace/BOP_Dataset'
+DATA_PATH = 'Dataspace'
 
 
 def BOP_REF_POSE(ref_R):

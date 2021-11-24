@@ -1,9 +1,11 @@
 evaluation/eval_results/*
 evaluation/bop_pred_results/
 evaluation/object_codebooks/*
-example/.ipynb_checkpoints/*
-example/ADD-S.ipynb
-example/qualitative-evaluation-LESS.ipynb
+evaluation/LMO_eval_gt_2.py
+evaluation/LM_eval_gt_2.py
+evaluation/TLESS_eval_sixd17_gt_2.py
+evaluation/mv_pred_results/
+notebook/*
 *__pycache__*
 *.pth
 training/checkpoints/*
