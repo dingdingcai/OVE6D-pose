@@ -46,7 +46,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = str(gpu_id)
 os.environ['EGL_DEVICE_ID'] = str(gpu_id)
 DEVICE = torch.device('cuda')
 
-ShapeNet_PATH = Path('/home/dingding/Dataspace/ShapeNetCoreV2Blended') # path to training dataset after blender
+ShapeNet_PATH = "/path/to/shapenet"
 
 batchsize = 8
 img_wid = cfg.RENDER_WIDTH
@@ -251,10 +251,6 @@ for epoch in range(max_epochs):
         gt_dz_offset = inp_gt_transform[:, 2:3, 2].to(DEVICE) # Bx1, ground truth depth shift (gt_dz = gt_tz - pd_tz)
 
         pd_init_T = zoom_inplane_T_aug.to(DEVICE)
-        if iter_steps % 2 == 0:
-            model_net.eval()
-        else:
-            model_net.train()
         
         (pd_theta,
         gt_inp_cls, pd_inp_cls, pd_oup_cls, pd_mix_cls,
@@ -308,8 +304,6 @@ for epoch in range(max_epochs):
         rank_loss = Triple_CosineDist(z_anc_gt_vec, z_inp_aug_vec, z_out_aug_vec)
 
         vp_conf_loss = torch.maximum(pd_oup_cls - gt_inp_cls + triple_margin, torch.zeros_like(pd_oup_cls)).mean()
-        if (epoch >= 20) and (iter_steps % 2 == 1):
-            vp_conf_loss = torch.maximum(pd_oup_cls - pd_inp_cls + triple_margin, torch.zeros_like(pd_oup_cls)).mean()
 
         loss = 100 * rank_loss + 10 * vp_conf_loss + img_sim_loss
         
