@@ -32,7 +32,7 @@ from lib.three import batchview
 from training import shapenet
 from training import train_utils as preprocess
 from training import config as cfg
-from tools import visualization as viz
+from utility import visualization as viz
 
 # torch.autograd.detect_anomaly()
 

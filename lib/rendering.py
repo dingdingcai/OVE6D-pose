@@ -12,7 +12,7 @@ import torch.nn.functional as F
 from pyrender import RenderFlags
 from pytorch3d.transforms import matrix_to_euler_angles, euler_angles_to_matrix
 
-from tools import meshutils
+from utility import meshutils
 
 os.environ['PYOPENGL_PLATFORM'] = 'egl'
 
