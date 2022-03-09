@@ -37,5 +37,5 @@ Our pre-trained OVE6D weights can be found [here](https://drive.google.com/drive
 - 2. For LineMOD and Occluded LineMOD, we fine-tuned the Mask-RCNN initialized with the weights from [Detectron2](https://github.com/facebookresearch/detectron2). The training data can be downloaded from [BOP](https://bop.felk.cvut.cz/datasets).
 
 # Acknowledgement
-- 1. The code is partly borrowed from [LatentFusion](https://github.com/NVlabs/latentfusion).
+- 1. The code is partially based on [LatentFusion](https://github.com/NVlabs/latentfusion).
 - 2. The evaluation code is based on [bop_toolkit](https://github.com/thodan/bop_toolkit) and [sixd_toolkit](https://github.com/thodan/sixd_toolkit).
