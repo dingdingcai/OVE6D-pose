@@ -1,5 +1,6 @@
 # OVE6D: Object Viewpoint Encoding for Depth-based 6D Object Pose Estimation (CVPR 2022)
-- [Project page](https://dingdingcai.github.io/ove6d-pose/) [Paper](https://arxiv.org/abs/2203.01072)
+- [Paper](https://arxiv.org/abs/2203.01072)
+- [Project page](https://dingdingcai.github.io/ove6d-pose/) 
 
 <p align="center">
     <img src ="assets/introduction_figure.png" width="500" />
