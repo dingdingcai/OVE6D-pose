@@ -138,8 +138,8 @@ def viewpoint_sampling_and_encoding(model_func, obj_model_file, obj_diameter, co
     obj_codebook_Z_vec = list()
     obj_codebook_Z_map = list()
     obj_codebook_delta_Ts = list()
-    Rs_chunks = torch.split(obj_Rs, split_size_or_sections=200, dim=0)
-    Ts_chunks = torch.split(obj_Ts, split_size_or_sections=200, dim=0)
+    Rs_chunks = torch.split(obj_Rs, split_size_or_sections=config.VIEWBOOK_BATCHSIZE, dim=0)
+    Ts_chunks = torch.split(obj_Ts, split_size_or_sections=config.VIEWBOOK_BATCHSIZE, dim=0)
 
     render_costs = list()
     infer_costs = list()
@@ -279,12 +279,12 @@ def OVE6D_mask_full_pose(model_func, obj_depth, obj_mask, obj_codebook, cam_K, c
     obj_mask[obj_depth<0] = 0
     obj_zoom_dist = config.ZOOM_DIST_FACTOR * obj_diameter * cam_K.squeeze().cpu()[0, 0]
     zoom_test_depth, init_t = input_zoom_preprocess(input_depth=obj_depth, 
-                                                input_mask=obj_mask, 
-                                                intrinsic=cam_K, 
-                                                device=device, 
-                                                target_zoom_dist=obj_zoom_dist, 
-                                                zoom_scale_mode=config.ZOOM_MODE, 
-                                                zoom_size=config.ZOOM_SIZE) # 1xHxW
+                                                    input_mask=obj_mask, 
+                                                    intrinsic=cam_K, 
+                                                    device=device, 
+                                                    target_zoom_dist=obj_zoom_dist, 
+                                                    zoom_scale_mode=config.ZOOM_MODE, 
+                                                    zoom_size=config.ZOOM_SIZE) # 1xHxW
     prep_cost = time.time() - prep_timer # the pre-processing runtime
     rot_timer = time.time()
 
@@ -293,9 +293,9 @@ def OVE6D_mask_full_pose(model_func, obj_depth, obj_mask, obj_codebook, cam_K, c
     #     estimated_scores = torch.zeros((config.RANK_NUM_TOPK,))
     # else:
     estimated_R, estimated_scores = OVE6D_mask_rotation_estimation(input_depth=zoom_test_depth,
-                                                                model_net=model_func,
-                                                                object_codebook=obj_codebook, 
-                                                                cfg=config)    
+                                                                    model_net=model_func,
+                                                                    object_codebook=obj_codebook, 
+                                                                    cfg=config)    
     rot_cost = time.time() - rot_timer # rotation estimation runtime
 
     raw_est_Rs = []

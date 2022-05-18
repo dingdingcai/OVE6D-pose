@@ -22,7 +22,7 @@ def inplane_2D_spatial_transform(R, img, mode='nearest', padding_mode='border', 
     return new_img
 
     
-@torch.jit.script
+# @torch.jit.script
 def masks_to_viewports(masks, pad: float = 10):
     viewports = []
     padding = torch.tensor([-pad, -pad, pad, pad], dtype=torch.float32, device=masks.device)
@@ -43,7 +43,7 @@ def masks_to_viewports(masks, pad: float = 10):
 
     return torch.stack(viewports, dim=0)
 
-@torch.jit.script
+# @torch.jit.script
 def masks_to_centroids(masks):
     viewports = masks_to_viewports(masks, 0.0)
     cu = (viewports[:, 2] + viewports[:, 0]) / 2.0
@@ -125,7 +125,7 @@ def _grid_sample(tensor, grid, **kwargs):
     return F.grid_sample(tensor.float(), grid.float(),align_corners=False, **kwargs)
 
 
-@torch.jit.script
+# @torch.jit.script
 def bbox_to_grid(bbox, in_size, out_size):
     h = in_size[0]
     w = in_size[1]
@@ -140,7 +140,7 @@ def bbox_to_grid(bbox, in_size, out_size):
     return torch.stack((grid_x, grid_y), dim=-1)
 
 
-@torch.jit.script
+# @torch.jit.script
 def bboxes_to_grid(boxes, in_size, out_size):
     grids = torch.zeros(boxes.size(0), out_size[1], out_size[0], 2, device=boxes.device)
     for i in range(boxes.size(0)):
