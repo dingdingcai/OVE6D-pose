@@ -3,6 +3,9 @@ evaluation/bop_pred_results
 evaluation/mv_pred_results
 evaluation/object_codebooks
 evaluation/*_GTmask.py
+evaluation/viewpoint_codebook
+example/.ipynb_checkpoints
+Dataspace2
 
 notebook
 *__pycache__*

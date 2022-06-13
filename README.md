@@ -5,7 +5,6 @@
 <p align="center">
     <img src ="assets/introduction_figure.png" width="500" />
 </p>
-If our project is helpful for your research, please consider citing : 
 ``` Bash
 @inproceedings{cai2022ove6d,
   title={OVE6D: Object Viewpoint Encoding for Depth-based 6D Object Pose Estimation},
@@ -15,6 +14,7 @@ If our project is helpful for your research, please consider citing :
   year={2022}
 }
 ```
+
 ## Setup
 Please start by installing [Miniconda3](https://conda.io/projects/conda/en/latest/user-guide/install/linux.html) with Pyhton3.8 or above.
 
