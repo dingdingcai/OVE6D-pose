@@ -5,7 +5,16 @@
 <p align="center">
     <img src ="assets/introduction_figure.png" width="500" />
 </p>
-
+If our project is helpful for your research, please consider citing : 
+``` Bash
+@inproceedings{cai2022ove6d,
+  title={OVE6D: Object Viewpoint Encoding for Depth-based 6D Object Pose Estimation},
+  author={Cai, Dingding and Heikkil{\"a}, Janne and Rahtu, Esa},
+  booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},
+  pages={6803--6813},
+  year={2022}
+}
+```
 ## Setup
 Please start by installing [Miniconda3](https://conda.io/projects/conda/en/latest/user-guide/install/linux.html) with Pyhton3.8 or above.
 
@@ -40,3 +49,5 @@ Our pre-trained OVE6D weights can be found [here](https://drive.google.com/drive
 # Acknowledgement
 - 1. The code is partially based on [LatentFusion](https://github.com/NVlabs/latentfusion).
 - 2. The evaluation code is based on [bop_toolkit](https://github.com/thodan/bop_toolkit) and [sixd_toolkit](https://github.com/thodan/sixd_toolkit).
+
+
