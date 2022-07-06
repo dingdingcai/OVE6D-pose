@@ -45,7 +45,10 @@ To train OVE6D, the ShapeNet dataset is required. You need to first pre-process 
 Our pre-trained OVE6D weights can be found [here](https://drive.google.com/drive/folders/16f2xOjQszVY4aC-oVboAD-Z40Aajoc1s?usp=sharing). Please download and save to the directory ``checkpoints/``.
 
 ## Segmentation Masks
-- 1. For T-LESS we use the [segmentation masks](https://dlrmax.dlr.de/get/c677b2a7-78cf-5787-815b-7ba2c26555a7/) provided by [Multi-Path Encoder](https://github.com/DLR-RM/AugmentedAutoencoder/tree/multipath).
+<!-- - 1. For T-LESS we use the [segmentation masks](https://dlrmax.dlr.de/get/c677b2a7-78cf-5787-815b-7ba2c26555a7/) provided by [Multi-Path Encoder](https://github.com/DLR-RM/AugmentedAutoencoder/tree/multipath). -->
+
+- 1. For T-LESS we use the [segmentation masks](https://drive.google.com/file/d/1UiJ6fo-2chlm4snNYzc7I_1MBLIzncWW/view?usp=sharing) provided by [Multi-Path Encoder](https://github.com/DLR-RM/AugmentedAutoencoder/tree/multipath).
+
 - 2. For LineMOD and Occluded LineMOD, we fine-tuned the Mask-RCNN initialized with the weights from [Detectron2](https://github.com/facebookresearch/detectron2). The training data can be downloaded from [BOP](https://bop.felk.cvut.cz/datasets).
 
 # Acknowledgement
