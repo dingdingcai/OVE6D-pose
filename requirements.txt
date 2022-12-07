@@ -12,14 +12,10 @@ matplotlib==3.3.4
 tqdm==4.59.0
 imgaug==0.4.0
 opencv-python==4.5.1.48
-# torch==1.8.0+cu110
-# torchvision==0.9.0+cu110
 pip install torch==1.8.0+cu111 torchvision==0.9.0+cu111 -f https://download.pytorch.org/whl/torch_stable.html
 PyYAML==5.4.1
 tensorboard==2.4.1
 Blender==2.80
 cudatoolkit==11.0
-# detectron2==0.4+cu110
 python -m pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.8/index.html
-# pytorch3d==0.4.0
 pip install "git+https://github.com/facebookresearch/pytorch3d.git"
