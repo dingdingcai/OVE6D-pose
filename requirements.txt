@@ -16,6 +16,6 @@ pip install torch==1.8.0+cu111 torchvision==0.9.0+cu111 -f https://download.pyto
 PyYAML==5.4.1
 tensorboard==2.4.1
 Blender==2.80
-cudatoolkit==11.0
+cudatoolkit==11.1
 python -m pip install detectron2 -f https://dl.fbaipublicfiles.com/detectron2/wheels/cu111/torch1.8/index.html
 pip install "git+https://github.com/facebookresearch/pytorch3d.git"
